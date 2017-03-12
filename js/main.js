@@ -172,26 +172,37 @@ var method = {
         }
     },
     /**** Method to show specific page <section>
-    
+
     domNode - String, Used to get id of currently selected node
     callback - Object, If callback is !undefined they method will run
-    
+
     ****/
     "showSection": function (domNode, callback) {
-        var id = domNode.getAttribute("id");
-
-        domNode.style.cssText += "-webkit-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -webkit-transform: translateY(" + clientHeight + "px); -moz-transform: translateY(" + clientHeight + "px); -ms-transform: translateY(" + clientHeight + "px); -o-transform: translateY(" + clientHeight + "px); transform: translateY(" + clientHeight + "px);";
+        var id = domNode.getAttribute("id"),
+            translateY = clientHeight;
 
         if (id !== "nav") {
+            if (clientWidth >= 768) {
+                translateY += 15;
+            }
+
             method.setHeader(id);
         }
+
+        domNode.style.cssText += "-webkit-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 450ms cubic-bezier(0.4, 0.01, 0.165, 0.99); -webkit-transform: translateY(" + translateY + "px); -moz-transform: translateY(" + translateY + "px); -ms-transform: translateY(" + translateY + "px); -o-transform: translateY(" + translateY + "px); transform: translateY(" + translateY + "px);";
 
         if (callback !== undefined) {
             callback()
         }
     },
     "hideSection": function (domNode, callback) {
-        domNode.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -webkit-transform: translateY(" + (-clientHeight) + "px); -moz-transform: translateY(" + (-clientHeight) + "px); -ms-transform: translateY(" + (-clientHeight) + "px); -o-transform: translateY(" + (-clientHeight) + "px); transform: translateY(" + (-clientHeight) + "px);";
+        var translateY = -clientHeight;
+
+        if (clientWidth >= 768) {
+            translateY += 15;
+        }
+
+        domNode.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -webkit-transform: translateY(" + translateY + "px); -moz-transform: translateY(" + translateY + "px); -ms-transform: translateY(" + translateY + "px); -o-transform: translateY(" + translateY + "px); transform: translateY(" + translateY + "px);";
 
         if (callback !== undefined) {
             callback()
@@ -232,12 +243,12 @@ var method = {
 
         if (clientWidth >= 1024) {
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); width: 50%; margin: 0 25%; top: 0; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translatetranslate(0px, 0px); transform: translate(0px, 0px);";
-            
+
             setTimeout(function () {
                 imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + img[0].offsetHeight + "px";
             }, 800);
         }
-        
+
         portfolioModal.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; width: " + clientWidth + "px; overflow-y: scroll; -webkit-transform: translate(" + translateX + "px, -" + translateY + "px); -moz-transform: translate(" + translateX + "px, -" + translateY + "px); -ms-transform: translate(" + translateX + "px, -" + translateY + "px); -o-transform: translate(" + translateX + "px, -" + translateY + "px); transform: translate(" + translateX + "px, -" + translateY + "px);";
     },
     "hideBlock": function (domNode) {
@@ -257,7 +268,7 @@ var method = {
             if (domNode !== portfolioDivs[0]) {
                 newParentWidth = halfClient;
             }
-            
+
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px";
 
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); width: 100%; margin: 0; top: 50%; transform: translateY(-50%);"
@@ -286,7 +297,7 @@ var method = {
                     obj.bool = true;
                     return;
                 } else {
-                    //Only remove activePage class when another page is clicked 
+                    //Only remove activePage class when another page is clicked
                     method.removeClass(domNode, className);
                     return;
                 }
@@ -340,11 +351,11 @@ var method = {
             //Runs if currently active page is not aHref tag clicked
             var currentActive = check.active,
                 currentId = currentActive.getAttribute("id");
-            
+
             if (currentId === "portfolioPage") {
                 portfolioModal.style.top = -clientHeight + "px";
             }
-            
+
             method.hideSection(currentActive, function () {
                 console.log(currentId)
                 method.showSection(domNode, function () {
@@ -376,7 +387,7 @@ var method = {
         if (blockType === "portfolio") {
             var portfolio = document.getElementById("portfolioPage");
 
-            //Set innerHTML of  to selected domNode  
+            //Set innerHTML of  to selected domNode
             portfolioModal.innerHTML = domNode.innerHTML;
 
             //Set modal position based on domNode clicked & bring to top
@@ -409,7 +420,7 @@ var method = {
         //                if (i !== 0) {
         //                    newHeight = blockHeight;
         //
-        //                    //98 is first block's zIndex, subtract by i divided by 2 since portfolioDivs[] has both .portfolioBlock <div> & .imgWrap <div> as part of selections 
+        //                    //98 is first block's zIndex, subtract by i divided by 2 since portfolioDivs[] has both .portfolioBlock <div> & .imgWrap <div> as part of selections
         //                    newZindex = 98 - (i / 2);
         //                } else {
         //                    newHeight = bannerHeight;
@@ -421,7 +432,7 @@ var method = {
 
         //activeBlock.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newHeight + "px; z-index: " + newZindex + "; overflow-y: hidden; -webkit-transform: translateY(0px); -moz-transform: translateY(0px); -ms-transform: translateY(0px); -o-transform: translateY(0px); transform: translateY(0px);";
 
-        //imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newHeight + "px"; 
+        //imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newHeight + "px";
 
         //img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); top: 50%; transform: translateY(-50%);"
 
@@ -490,7 +501,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     method.init()
 
     window.addEventListener("resize", function () {
-        method.init()
-        console.log('boo')
+        clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     });
 });
