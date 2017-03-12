@@ -24,7 +24,8 @@ var wrap = document.getElementById("wrap"),
     //portfolioDivs = document.querySelectorAll("#portfolioPage div"),
     portfolioDivs = document.querySelectorAll(".portfolioBlock"),
     portfolioModal = document.getElementById("portfolioModal"),
-    resumeBlocks = document.querySelectorAll(".block");
+    resumeBlocks = document.querySelectorAll(".block"),
+    contactForm = document.getElementById("contactform");
 
 var svgWrapper = document.querySelector(".gh-svg-wrapper"),
     svg = document.querySelector(".gh-svg"),
@@ -497,6 +498,39 @@ document.addEventListener("DOMContentLoaded", function (event) {
             method.openBlock(parent)
         })
     }
+
+    contactForm.onsubmit = function (e) {
+        // stop the regular form submission
+        e.preventDefault();
+
+        // collect the form data while iterating over the inputs
+        var data = {};
+        for (var i = 0, ii = contactForm.length; i < ii; ++i) {
+            var input = contactForm[i];
+            if (input.name) {
+                data[input.name] = input.value;
+            }
+        }
+
+        // construct an HTTP request
+        var xhr = new XMLHttpRequest();
+        xhr.open(contactForm.method, contactForm.action, true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+        // send the collected data as JSON
+        xhr.send(JSON.stringify(data));
+
+        xhr.onprogress = function () {
+            console.log('sending')
+        };
+
+        xhr.onloadend = function () {
+            console.log('yay')
+        };
+        xhr.onerror = function () {
+            console.log('error')
+        };
+    };
 
     method.init()
 

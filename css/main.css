@@ -276,6 +276,7 @@ section h2 {
 #resumePage h2 {
     color: rgb(255, 200, 37);
     color: #ffc825;
+    padding-bottom: 1rem;
 }
 
 #resumePage h3 {
