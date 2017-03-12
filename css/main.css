@@ -233,7 +233,8 @@ section h2 {
 }
 
 #portfolioModal h2 {
-    margin: 1rem 0;
+    width: 75%;
+    margin: 1rem 12.5%;
 }
 
 #portfolioModal p {
@@ -267,19 +268,47 @@ section h2 {
 
 /* Resume */
 
+#resumePage {
+    width: 100%;
+    padding: 0;
+}
+
+#resumePage h2 {
+    color: rgb(255, 200, 37);
+    color: #ffc825;
+}
+
 #resumePage h3 {
-    height: 45px;
     line-height: 45px;
 }
 
+.banner {
+    background: rgb(51, 51, 51);
+    background: #333333;
+}
+
+.banner img {
+    width: 75%;
+    margin: 1rem 12.5% 0;
+}
+
 .resumeBlock {
-    width: 100%;
+    width: 90%;
+    padding: 0 5%;
     height: 45px;
     overflow: hidden;
 }
 
-.resumeBlock:first-child {
+.resumeBlock p {
+    margin: 0 0 0.75rem;
+}
+
+#mobileResume div:nth-child(2) {
     height: auto;
+}
+
+#mobileResume div:last-child {
+    margin-bottom: 1rem;
 }
 
 .arrowDown {
@@ -290,7 +319,7 @@ section h2 {
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 12px solid #000;
+    border-top: 12px solid #333;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -o-transform: translateY(-50%);
@@ -311,7 +340,8 @@ form div {
 
 form label {
     display: block;
-    width: 100%
+    width: 100%;
+    margin-bottom: 0.75rem;
 }
 
 form input {
@@ -339,7 +369,6 @@ form textarea {
 #contactPage ul {
     width: 100%;
     height: 45px;
-    text-align: center;
 }
 
 #contactPage li {
