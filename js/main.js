@@ -222,8 +222,6 @@ var method = {
             imgTranslateY = 0;
 
         if (clientWidth < 768) {
-            //domNode.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; z-index: 100; overflow-y: scroll; -webkit-transform: translate(" + translateX + "px, -" + translateY + "px); -moz-transform: translate(" + translateX + "px, -" + translateY + "px); -ms-transform: translate(" + translateX + "px, -" + translateY + "px); -o-transform: translate(" + translateX + "px, -" + translateY + "px); transform: translate(" + translateX + "px, -" + translateY + "px);";
-
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); top: 0; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translatetranslate(0px, 0px); transform: translate(0px, 0px);";
 
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + img[0].offsetHeight + "px";
@@ -263,6 +261,10 @@ var method = {
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px";
 
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); top: 50%; transform: translateY(-50%);"
+
+            setTimeout(function () {
+                hideModal();
+            }, 1000);
         }
 
         if (clientWidth >= 768) {
@@ -271,13 +273,19 @@ var method = {
             }
 
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px";
-
+            
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); width: 100%; margin: 0; top: 50%; transform: translateY(-50%);"
+            
+            setTimeout(function () {
+                hideModal();
+            }, 1000);
         }
 
-        portfolioModal.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; width: " + newParentWidth + "px; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); transform: translate(0px, 0px);";
+        function hideModal() {
+            portfolioModal.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; width: " + newParentWidth + "px; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); transform: translate(0px, 0px);";
 
-        portfolioModal.style.zIndex = "0";
+            portfolioModal.style.zIndex = "0";
+        }
     },
     /**** Method to check which <div>/<section> is currently showing */
     "checkActive": function (type, id) {

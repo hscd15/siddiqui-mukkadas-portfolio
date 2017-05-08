@@ -215,6 +215,10 @@ section h2 {
     height: auto
 }
 
+#aboutPage .textBox {
+    margin-bottom: 1.5rem;
+}
+
 
 /* Portfolio Page */
 
@@ -277,6 +281,12 @@ section h2 {
     color: rgb(255, 200, 37);
     color: #ffc825;
     padding-bottom: 1rem;
+}
+
+#resumePage iframe {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
 }
 
 #resumePage h3 {
@@ -414,15 +424,23 @@ footer p {
     .bigFont {
         font-size: 5.5rem;
     }
-    #aboutPage h2 {
-        width: 45%;
-        margin-top: 2rem;
-        padding: 5rem 2.5%;
-        float: right;
+    #aboutPage > div {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
     #aboutPage img {
         width: 50%;
-        margin: 2rem 0 1rem;
+    }
+    #aboutPage .textBox {
+        width: 45%;
+        margin: 2rem 0 0;
+        padding: 0 2.5%;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
     }
     #portfolioModal,
     .portfolioBlock {
