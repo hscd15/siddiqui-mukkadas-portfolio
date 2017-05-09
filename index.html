@@ -31,26 +31,31 @@
             </nav>
 
             <div id="navBtn" class="gh-svg-wrapper">
-                <svg x="0px" y="0px" width="100%" viewBox="0 0 96 96" class="gh-svg gh-svg-top" enable-background="new 0 0 96 96">
+                <svg x="0px" y="0px" width="100%" viewBox="0 0 96 96" class="gh-svg gh-svg-top" enable-background="new 0 0 96 96" fill="#323031">
                     <rect width="32" height="4" x="32" y="46" class="gh-svg-rect gh-svg-rect-top"></rect>
                 </svg>
-                <svg x="0px" y="0px" width="100%" viewBox="0 0 96 96" class="gh-svg gh-svg-bottom" enable-background="new 0 0 96 96">
+                <svg x="0px" y="0px" width="100%" viewBox="0 0 96 96" class="gh-svg gh-svg-bottom" enable-background="new 0 0 96 96" fill="#323031">
                     <rect width="32" height="4" x="32" y="46" class="gh-svg-rect gh-svg-rect-bottom"></rect>
                 </svg>
             </div>
 
+            <img id="wordMark" src="imgs/wordMark.svg" alt="Mukkadas Siddiqui word mark. It spells Sid.">
             <div id="navHeader" class="titleFont mediumFont">About Me</div>
         </header>
 
         <article>
             <section id="aboutPage" class="bodyFont">
-                <h2 class="titleFont mediumFont wordSpacing">Hello, i'm Mukkadas Siddiqui. A Graphic Designer that specializes in UI &ndash; User Interface and UX &ndash; User Experience.</h2>
+                <div>
+                    <img src="imgs/siddiqui-mukkadas-square.jpg" alt="Mukkadas Siddiqui Portrait">
 
-                <img src="imgs/siddiqui-mukkadas-square.jpg" alt="Mukkadas Siddiqui Portrait">
+                    <div class="textBox">
+                        <h2 class="titleFont mediumFont wordSpacing">Hello, i'm Mukkadas Siddiqui. A Graphic Designer that specializes in UI &ndash; User Interface and UX &ndash; User Experience.</h2>
 
-                <p>I prefer to be called Sid.</p>
+                        <p>I prefer to be called Sid.</p>
 
-                <p>Less is more, I am focused on purposeful design keeping my vision simple. The brand and experience has to be engaging to the user. I strive to learn from my mistakes so I can become a better designer.</p>
+                        <p>Less is more, I am focused on purposeful design keeping my vision simple. The brand and experience has to be engaging to the user. I strive to learn from my mistakes so I can become a better designer.</p>
+                    </div>
+                </div>
             </section>
 
             <section id="portfolioPage">
@@ -138,7 +143,7 @@
             <section id="resumePage">
                 <div id="mobileResume">
                     <div class="banner">
-                        <img src="imgs/siddiqui-mukkadas-wordMark.svg" alt="Mukkadas Siddiqui Wordmark - Yellow Color">
+                        <img src="imgs/whiteWordMark.svg" alt="Mukkadas Siddiqui Wordmark - Yellow Color">
                         <h2 class="titleFont center">
                         <span>Mukkadas Siddiqui</span>
                             <br/>
@@ -244,7 +249,7 @@
 
             <section id="contactPage">
                 <h2 class="titleFont mediumType center">Send me an email</h2>
-                <form id="contactform" method="POST">
+                <form id="contactform" action="https://formspree.io/siddiquimukkadas@gmail.com" method="POST">
                     <div>
                         <label class="bodyFont">Your Name:</label>
                         <input type="text" name="name" class="form-control">

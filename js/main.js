@@ -24,7 +24,8 @@ var wrap = document.getElementById("wrap"),
     //portfolioDivs = document.querySelectorAll("#portfolioPage div"),
     portfolioDivs = document.querySelectorAll(".portfolioBlock"),
     portfolioModal = document.getElementById("portfolioModal"),
-    resumeBlocks = document.querySelectorAll(".block");
+    resumeBlocks = document.querySelectorAll(".block"),
+    contactForm = document.getElementById("contactform");
 
 var svgWrapper = document.querySelector(".gh-svg-wrapper"),
     svg = document.querySelector(".gh-svg"),
@@ -158,9 +159,9 @@ var method = {
     },
     "addClass": function (el, className) {
         if (el.classList) {
-            el.classList.add(className)
+            el.classList.add(className);
         } else if (!hasClass(el, className)) {
-            el.className += " " + className
+            el.className += " " + className;
         }
     },
     "removeClass": function (el, className) {
@@ -221,8 +222,6 @@ var method = {
             imgTranslateY = 0;
 
         if (clientWidth < 768) {
-            //domNode.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; z-index: 100; overflow-y: scroll; -webkit-transform: translate(" + translateX + "px, -" + translateY + "px); -moz-transform: translate(" + translateX + "px, -" + translateY + "px); -ms-transform: translate(" + translateX + "px, -" + translateY + "px); -o-transform: translate(" + translateX + "px, -" + translateY + "px); transform: translate(" + translateX + "px, -" + translateY + "px);";
-
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); top: 0; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translatetranslate(0px, 0px); transform: translate(0px, 0px);";
 
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + img[0].offsetHeight + "px";
@@ -262,6 +261,10 @@ var method = {
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px";
 
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); top: 50%; transform: translateY(-50%);"
+
+            setTimeout(function () {
+                hideModal();
+            }, 1000);
         }
 
         if (clientWidth >= 768) {
@@ -272,11 +275,17 @@ var method = {
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px";
 
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); width: 100%; margin: 0; top: 50%; transform: translateY(-50%);"
+
+            setTimeout(function () {
+                hideModal();
+            }, 1000);
         }
 
-        portfolioModal.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; width: " + newParentWidth + "px; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); transform: translate(0px, 0px);";
+        function hideModal() {
+            portfolioModal.style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px; width: " + newParentWidth + "px; -webkit-transform: translate(0px, 0px); -moz-transform: translate(0px, 0px); -ms-transform: translate(0px, 0px); -o-transform: translate(0px, 0px); transform: translate(0px, 0px);";
 
-        portfolioModal.style.zIndex = "0";
+            portfolioModal.style.zIndex = "0";
+        }
     },
     /**** Method to check which <div>/<section> is currently showing */
     "checkActive": function (type, id) {
@@ -357,9 +366,13 @@ var method = {
             }
 
             method.hideSection(currentActive, function () {
-                console.log(currentId)
                 method.showSection(domNode, function () {
-                    method.hideSection(nav);
+                    method.hideSection(nav, function () {
+                        var navSvgs = navBtn.querySelectorAll("svg");
+                        for (var i = 0, len = navSvgs.length; i < len; i++) {
+                            navSvgs[i].style.fill = "#323031";
+                        }
+                    });
                     method.addClass(domNode, "activePage");
                 });
             })
@@ -449,19 +462,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
     navBtn.addEventListener("click", function () {
         var menuOpen = method.hasClass(navBtn, "menuShowing");
         var blockOpen = method.hasClass(navBtn, "blockOpen");
+        var navSvgs = navBtn.querySelectorAll("svg");
 
         if (!blockOpen) {
             //If blocks are not open
             if (!menuOpen) {
                 //If menu is not open
                 method.addClass(navBtn, "menuShowing");
+
                 method.svg("closeBtn", true);
-                method.showSection(nav);
+                method.showSection(nav, function () {
+                    for (var i = 0, len = navSvgs.length; i < len; i++) {
+                        navSvgs[i].style.fill = "#ffffff";
+                    }
+                });
             } else {
                 //If menu is open
+
                 method.removeClass(navBtn, "menuShowing")
                 method.svg("closeBtn");
-                method.hideSection(nav);
+                method.hideSection(nav, function () {
+                    for (var i = 0, len = navSvgs.length; i < len; i++) {
+                        navSvgs[i].style.fill = "#323031";
+                    }
+                });
             }
         } else {
             //If any block is open
@@ -478,6 +502,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         hrefs[i].addEventListener("click", function (event) {
             var id = event.target.id;
             var page = textContent[("#" + id)];
+
             method.openCloseSection(page);
             method.removeClass(navBtn, "menuShowing");
             method.svg("closeBtn");
@@ -497,6 +522,39 @@ document.addEventListener("DOMContentLoaded", function (event) {
             method.openBlock(parent)
         })
     }
+
+    contactForm.onsubmit = function (e) {
+        // stop the regular form submission
+        e.preventDefault();
+
+        // collect the form data while iterating over the inputs
+        var data = {};
+        for (var i = 0, ii = contactForm.length; i < ii; ++i) {
+            var input = contactForm[i];
+            if (input.name) {
+                data[input.name] = input.value;
+            }
+        }
+
+        // construct an HTTP request
+        var xhr = new XMLHttpRequest();
+        xhr.open(contactForm.method, contactForm.action, true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+        // send the collected data as JSON
+        xhr.send(JSON.stringify(data));
+
+        xhr.onprogress = function () {
+            console.log('sending')
+        };
+
+        xhr.onloadend = function () {
+            console.log('yay')
+        };
+        xhr.onerror = function () {
+            console.log('error')
+        };
+    };
 
     method.init()
 

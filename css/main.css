@@ -95,8 +95,8 @@ nav a:visited,
 nav a:hover,
 nav a:active {
     color: white;
-    background: rgb(51, 51, 51);
-    background: #333333;
+    background: rgb(50,48,49);
+    background: #323031;
     text-decoration: none;
     box-shadow: 0 1px 10px rgba(43, 46, 57, 0.2);
     z-index: 95;
@@ -106,20 +106,20 @@ nav a:active {
 }
 
 nav a:first-child {
-    background: rgb(8, 103, 136);
-    background: #086788;
+    background: rgb(8,76,97);
+    background: #084C61;
     z-index: 98;
 }
 
 nav a:nth-child(2) {
-    background: rgb(222, 79, 79);
-    background: #de4f4f;
+    background: rgb(219,58,52);
+    background: #DB3A34;
     z-index: 97;
 }
 
 nav a:nth-child(3) {
-    background: rgb(255, 200, 37);
-    background: #ffc825;
+    background: rgb(255,200,87);
+    background: #FFC857;
     z-index: 96;
 }
 
@@ -139,7 +139,6 @@ header {
     box-shadow: 0 1px 10px rgba(43, 46, 57, 0.2);
 }
 
-
 /* navBtn from codepen user "teppeis" http://codepen.io/teppeis/pen/Dbcrd?editors=1100 */
 
 #navBtn {
@@ -149,19 +148,22 @@ header {
 
 #navHeader {
     z-index: 98;
-    float: right;
-    margin-right: 5%;
+    float: left;
     line-height: 45px;
     display: block;
 }
 
+#wordMark {
+    float: right;
+    height: 35px;
+    padding: 5px 10px;
+}
+
 .gh-svg-wrapper {
     display: block;
-    position: absolute;
+    float: left;
     height: 45px;
     width: 45px;
-    transform: translateZ(0) rotate(0deg);
-    transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
 }
 
 .gh-svg {
@@ -213,6 +215,10 @@ section h2 {
 #aboutPage img {
     width: 100%;
     height: auto
+}
+
+#aboutPage .textBox {
+    margin-bottom: 1.5rem;
 }
 
 
@@ -276,6 +282,13 @@ section h2 {
 #resumePage h2 {
     color: rgb(255, 200, 37);
     color: #ffc825;
+    padding-bottom: 1rem;
+}
+
+#resumePage iframe {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
 }
 
 #resumePage h3 {
@@ -359,8 +372,8 @@ form textarea {
 #sendMessage {
     width: 100%;
     height: 44px;
-    background: rgb(43, 46, 57);
-    background: #2b2e39;
+    background: rgb(50,48,49);
+    background: #323031;
     border: none;
     border-radius: 3px;
     margin-bottom: 1rem;
@@ -387,8 +400,8 @@ footer {
     width: 100%;
     height: 45px;
     z-index: 98;
-    background: rgb(51, 51, 51);
-    background: #333333;
+    background: rgb(50,48,49);
+    background: #323031;
 }
 
 footer p {
@@ -413,15 +426,23 @@ footer p {
     .bigFont {
         font-size: 5.5rem;
     }
-    #aboutPage h2 {
-        width: 45%;
-        margin-top: 2rem;
-        padding: 5rem 2.5%;
-        float: right;
+    #aboutPage > div {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
     #aboutPage img {
         width: 50%;
-        margin: 2rem 0 1rem;
+    }
+    #aboutPage .textBox {
+        width: 45%;
+        margin: 2rem 0 0;
+        padding: 0 2.5%;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
     }
     #portfolioModal,
     .portfolioBlock {
