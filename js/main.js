@@ -159,9 +159,9 @@ var method = {
     },
     "addClass": function (el, className) {
         if (el.classList) {
-            el.classList.add(className)
+            el.classList.add(className);
         } else if (!hasClass(el, className)) {
-            el.className += " " + className
+            el.className += " " + className;
         }
     },
     "removeClass": function (el, className) {
@@ -273,9 +273,9 @@ var method = {
             }
 
             imgWrap[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); height: " + newParentHeight + "px";
-            
+
             img[0].style.cssText += "-webkit-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -moz-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -ms-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); -o-transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); transition: all 1s cubic-bezier(0.4, 0.01, 0.165, 0.99); width: 100%; margin: 0; top: 50%; transform: translateY(-50%);"
-            
+
             setTimeout(function () {
                 hideModal();
             }, 1000);
@@ -366,9 +366,13 @@ var method = {
             }
 
             method.hideSection(currentActive, function () {
-                console.log(currentId)
                 method.showSection(domNode, function () {
-                    method.hideSection(nav);
+                    method.hideSection(nav, function () {
+                        var navSvgs = navBtn.querySelectorAll("svg");
+                        for (var i = 0, len = navSvgs.length; i < len; i++) {
+                            navSvgs[i].style.fill = "#323031";
+                        }
+                    });
                     method.addClass(domNode, "activePage");
                 });
             })
@@ -458,19 +462,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
     navBtn.addEventListener("click", function () {
         var menuOpen = method.hasClass(navBtn, "menuShowing");
         var blockOpen = method.hasClass(navBtn, "blockOpen");
+        var navSvgs = navBtn.querySelectorAll("svg");
 
         if (!blockOpen) {
             //If blocks are not open
             if (!menuOpen) {
                 //If menu is not open
                 method.addClass(navBtn, "menuShowing");
+
                 method.svg("closeBtn", true);
-                method.showSection(nav);
+                method.showSection(nav, function () {
+                    for (var i = 0, len = navSvgs.length; i < len; i++) {
+                        navSvgs[i].style.fill = "#ffffff";
+                    }
+                });
             } else {
                 //If menu is open
+
                 method.removeClass(navBtn, "menuShowing")
                 method.svg("closeBtn");
-                method.hideSection(nav);
+                method.hideSection(nav, function () {
+                    for (var i = 0, len = navSvgs.length; i < len; i++) {
+                        navSvgs[i].style.fill = "#323031";
+                    }
+                });
             }
         } else {
             //If any block is open
@@ -487,6 +502,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         hrefs[i].addEventListener("click", function (event) {
             var id = event.target.id;
             var page = textContent[("#" + id)];
+
             method.openCloseSection(page);
             method.removeClass(navBtn, "menuShowing");
             method.svg("closeBtn");
