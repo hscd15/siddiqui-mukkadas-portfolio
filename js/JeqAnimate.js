@@ -1,5 +1,5 @@
 "use strict";
-Jeq.animate = (function () {
+    Jeq.animate = (function () {
     var fade = function (domId, method, callBack) {
             var domNode = document.getElementById(domId);
 
@@ -37,8 +37,10 @@ Jeq.animate = (function () {
 
             //nav is open
             if (navState) {
-                var nav = document.getElementsByTagName("nav");
-
+                var wrap = document.getElementById("wrap"),
+                nav = document.getElementsByTagName("nav");
+                
+                wrap.style.overflow = "hidden";
                 nav[0].style.cssText = "top: -100%; height: " + Jeq.get("clientHeight") + "px";
 
                 Jeq.animate.navBtn();
@@ -111,7 +113,7 @@ Jeq.animate = (function () {
                     wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
                 } else {
                     //firstVisit
-                    modal.style.cssText = "position: absolute; z-index: 98; height: " + clientHeight + "px";
+                    modal.style.cssText = "position: absolute; z-index: 99; height: " + clientHeight + "px";
                     wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
                 }
                 
