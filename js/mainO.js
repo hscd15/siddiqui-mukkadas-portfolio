@@ -457,8 +457,8 @@ var method = {
 }
 
 //Run when all HTML/DOM has loaded
-document.addEventListener("DOMContentLoaded", function (event) {
-
+function init (event) {
+    
     navBtn.addEventListener("click", function () {
         var menuOpen = method.hasClass(navBtn, "menuShowing");
         var blockOpen = method.hasClass(navBtn, "blockOpen");
@@ -562,4 +562,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     });
-});
+};
+
+//Grapnel.listen(JeqRoutes);
+document.addEventListener("DOMContentLoaded", init(), false);
