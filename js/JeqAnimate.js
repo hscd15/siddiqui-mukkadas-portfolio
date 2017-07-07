@@ -1,5 +1,5 @@
 "use strict";
-    Jeq.animate = (function () {
+Jeq.animate = (function () {
     var fade = function (domId, method, callBack) {
             var domNode = document.getElementById(domId);
 
@@ -31,58 +31,87 @@
             }
         },
         nav = function () {
-            var nav = document.getElementsByTagName("nav"),
+            var wrap = document.getElementById("wrap"),
+                nav = document.getElementsByTagName("nav"),
                 navState = Jeq.get("navState"),
-                modalState = Jeq.get("modalState");
+                modalState = Jeq.get("modalState"),
+                clientHeight = Jeq.get("clientHeight");
 
             //nav is open
             if (navState) {
-                var wrap = document.getElementById("wrap"),
-                nav = document.getElementsByTagName("nav");
-                
-                wrap.style.overflow = "hidden";
+                wrap.style.height = "auto";
                 nav[0].style.cssText = "top: -100%; height: " + Jeq.get("clientHeight") + "px";
 
                 Jeq.animate.navBtn();
                 Jeq.set("navState", false);
+
+                clientHeight = null;
+                navState = null;
+                nav = null;
+                wrap = null;
             } else {
-                //modal is open
-                console.log(modalState);
                 if (modalState) {
                     Jeq.animate.modal(function () {
-                        Router.navigate('portfolio');    
+                        Router.navigate('portfolio');
                     });
                 } else {
-                    nav[0].style.cssText = "top: 0px; height: " + Jeq.get("clientHeight") + "px";
+                    wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
+
+                    nav[0].style.cssText = "top: 0px; height: " + clientHeight + "px";
 
                     Jeq.animate.navBtn();
                     Jeq.set("navState", true);
                 }
+
+                clientHeight = null;
+                navState = null;
+                nav = null;
+                wrap = null;
             }
         },
         navBtn = function () {
             var navBtn = document.getElementById("navBtn"),
                 navSvgs = navBtn.querySelectorAll("svg"),
                 btnState = Jeq.get("btnState"),
+                modalState = Jeq.get("modalState"),
+                clientWidth = Jeq.get("clientWidth"),
                 svgTop = document.querySelector(".gh-svg-top"),
                 svgBottom = document.querySelector(".gh-svg-bottom");
 
-            
             if (!btnState) {
                 //if nav btn is original state
+                if (modalState) {
+                    setTimeout(function () {
+                        navBtn.style.cssText = "background: rgba(255, 255, 255, 0.9); box-shadow: 0 1px 10px rgba(43, 46, 57, 0.4)";
+                    }, 200);
+                }
+
                 Jeq.set("btnState", true);
                 for (var i = 0, len = navSvgs.length; i < len; i++) {
-                    navSvgs[i].style.fill = "#ffffff";
+                    if (!modalState) {
+                        navSvgs[i].style.fill = "#ffffff";
+                    }
                 };
 
-                svgTop.style.cssText += "transform: translateY(5.5px) rotate(45deg);"
-                svgBottom.style.cssText += "transform: translateY(0) rotate(-45deg);"
-            
+                if (clientWidth === 768 || clientWidth > 768) {
+                    console.log("yay")
+                    svgTop.style.cssText += "transform: translate(-3.5px, 3.5px) rotate(45deg);"
+                    svgBottom.style.cssText += "transform: translate(-3.5px, -3.5px) rotate(-45deg);"
+                };
+
+                if (clientWidth < 768 && clientWidth !== 768) {
+                    svgTop.style.cssText += "transform: translate(-2.5px, 2.5px) rotate(45deg);"
+                    svgBottom.style.cssText += "transform: translate(-2.5px, -2.5px) rotate(-45deg);"
+                }
             } else {
                 Jeq.set("btnState", false);
-                
-                svgTop.style.cssText += "transform: translateY(0) rotate(0deg);"
-                svgBottom.style.cssText += "transform: translateY(0) rotate(0deg);"
+
+                if (modalState) {
+                    navBtn.style.cssText = "background: none; box-shadow: none;";
+                }
+
+                svgTop.style.cssText += "transform: translate(0, 0) rotate(0deg);"
+                svgBottom.style.cssText += "transform: translate(0, 0) rotate(0deg);"
 
                 setTimeout(function () {
                     var navSvgs = navBtn.querySelectorAll("svg")
@@ -103,24 +132,26 @@
 
             //If modal is open
             if (modalState) {
+                Jeq.animate.navBtn();
                 Jeq.set("modalState", false);
                 modal.style.cssText = "position: fixed; top: 100%";
-                
+
                 wrap.style.height = "auto";
             } else {
                 if (!firstVisit) {
                     modal.style.cssText = "position: absolute; top: 0px; height: " + clientHeight + "px";
+
                     wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
                 } else {
                     //firstVisit
                     modal.style.cssText = "position: absolute; z-index: 99; height: " + clientHeight + "px";
                     wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
                 }
-                
+
                 Jeq.set("modalState", true);
+                Jeq.animate.navBtn();
             }
-            
-            Jeq.animate.navBtn();
+            //Jeq.animate.navBtn(false);
             if (callBack !== undefined) {
                 callBack();
             }

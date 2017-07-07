@@ -2,29 +2,28 @@
 var Jeq = (function () {
     //protected and privileged config dictionary
     var config = {
+            "clientWidth": window.innerWidth || document.documentElement.clientWidth,
             "clientHeight": window.innerHeight || document.documentElement.clientHeight,
             "btnState": false,
             "navState": false,
             "modalState": false,
             "firstVisit": true,
         },
-
         init = function (event) {
             var nav = document.getElementsByTagName("nav"),
                 links = nav[0].querySelectorAll("a"),
-                navBtn = document.getElementById("navBtn");
+                navBtn = document.getElementById("navBtn"),
+                closeModalBtn = document.getElementById("closeModalBtn");
 
             nav[0].style.height = Jeq.get("clientHeight") + "px";
-            
+
             for (var i = 0, len = links.length; i < len; i++) {
                 links[i].style.lineHeight = (Jeq.get("clientHeight") * 0.25) + "px";
 
                 links[i].addEventListener("click", Jeq.animate.nav, false);
             }
 
-            navBtn.addEventListener("click", function () {
-                Jeq.animate.nav();
-            });
+            navBtn.addEventListener("click", Jeq.animate.nav);
 
             /*window.addEventListener("resize", function () {
                 var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -100,7 +99,7 @@ var Jeq = (function () {
             case "get":
                 var check = localCheck(args.url),
                     req = new XMLHttpRequest();
-                
+
                 console.log(check);
                 console.log(args.url);
                 if (check === "00" || check === "10") {

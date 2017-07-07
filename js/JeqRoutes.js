@@ -39,7 +39,7 @@ var Router = new Grapnel(),
             });
         },
         "portfolio/:pieceId": function (req, e) {
-            Jeq.string.setHeading("piece-" + req.params.pieceId);
+            Jeq.string.setHeading(req.params.pieceId);
 
             var url = "templates/portfolio/" + Jeq.string.camelCase(req.params.pieceId) + ".html";
 
