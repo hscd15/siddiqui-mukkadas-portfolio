@@ -94,7 +94,6 @@ Jeq.animate = (function () {
                 };
 
                 if (clientWidth === 768 || clientWidth > 768) {
-                    console.log("yay")
                     svgTop.style.cssText += "transform: translate(-3.5px, 3.5px) rotate(45deg);"
                     svgBottom.style.cssText += "transform: translate(-3.5px, -3.5px) rotate(-45deg);"
                 };

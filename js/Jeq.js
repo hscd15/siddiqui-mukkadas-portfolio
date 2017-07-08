@@ -12,8 +12,7 @@ var Jeq = (function () {
         init = function (event) {
             var nav = document.getElementsByTagName("nav"),
                 links = nav[0].querySelectorAll("a"),
-                navBtn = document.getElementById("navBtn"),
-                closeModalBtn = document.getElementById("closeModalBtn");
+                navBtn = document.getElementById("navBtn");
 
             nav[0].style.height = Jeq.get("clientHeight") + "px";
 
@@ -25,12 +24,21 @@ var Jeq = (function () {
 
             navBtn.addEventListener("click", Jeq.animate.nav);
 
-            /*window.addEventListener("resize", function () {
-                var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                var clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            window.addEventListener("resize", function () {
+                var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                    clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-                console.log(clientWidth + " " + clientHeight);
-            });*/
+                nav[0].style.height = clientHeight + "px";
+                
+                Jeq.set("clientWidth", clientWidth);
+                Jeq.set("clientHeight", clientHeight);
+                
+                clientWidth = null;
+                clientHeight = null;
+            });
+            
+            navBtn = null;
+            links = null;
         },
         //On first visit, runs from routes not init method
         firstVisit = function () {

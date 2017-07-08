@@ -170,7 +170,7 @@ header {
     left: 0;
     width: 100%;
     height: 45px;
-    box-shadow: 0 1px 10px rgba(43, 46, 57, 0.2);
+    box-shadow: 0px 0px 5px rgba(43, 46, 57, 0.2)
 }
 
 
@@ -240,11 +240,11 @@ h2 {
 /* Portfolio Page */
 
 .portfolioBlock {
+    background: white;
+    box-shadow: 0 1px 10px rgba(43, 46, 57, 0.2);
     z-index: 98;
     width: 100%;
-    box-shadow: 0 1px 10px #2b2e39;
     overflow-y: hidden;
-    background: white;
 }
 
 .imgWrap {
@@ -420,14 +420,24 @@ footer p {
     /* General */
     article {
         top: 60px;
+        width: 90%;
+        margin: 0 5%;
+    }
+    .imgBox {
+        width: 65%;
+        padding-top: 65%;
+        margin: 0 17.5% 1rem;
     }
     .textBox {
+        width: 65%;
+        margin: 1rem 17.5%;
+    }
+    .textBlock {
+        float: right;
         width: 45%;
-        margin: 2rem 0 0;
-        padding: 0 2.5%;
-        position: absolute;
-        left: 50%;
-        bottom: 0;
+        margin: 0.5% 2.5% 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
     }
     /* Header */
     header {
@@ -447,15 +457,16 @@ footer p {
     /* Portfolio */
     .portfolioBlock {
         width: 50%;
-    }
-    .portfolioBlock:nth-child(odd) {
-        float: right;
-    }
-    .portfolioBlock:nth-child(even) {
         float: left;
     }
     .portfolioBlock:first-child {
         width: 100%;
+    }
+    .portfolioBlock:first-child .imgWrap {
+        padding-top: 25%;
+    }
+    .imgWrap {
+        padding-top: 40%;
     }
     /* Resume */
     #mobileResume {
@@ -471,11 +482,18 @@ footer p {
         top: 50%;
         transform: translateY(-50%);
     }
-    #modal .textBlock {
-        float: right;
-        width: 45%;
-        margin: 0.5% 2.5% 0.75rem;
-        top: 50%;
-        transform: translateY(-50%);
+    #modal .portfolioBlock {
+        box-shadow: none;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    /* Portfolio */
+    .portfolioBlock {
+        width: 33.333333%;
+        float: left;
+    }
+    .imgWrap {
+        padding-top: 55%;
     }
 }
