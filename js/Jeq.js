@@ -15,6 +15,9 @@ var Jeq = (function () {
                 navBtn = document.getElementById("navBtn");
 
             nav[0].style.height = Jeq.get("clientHeight") + "px";
+            
+            Jeq.set("firstVisit", false);
+            Jeq.checkVersion();
 
             for (var i = 0, len = links.length; i < len; i++) {
                 links[i].style.lineHeight = (Jeq.get("clientHeight") * 0.25) + "px";
@@ -29,28 +32,17 @@ var Jeq = (function () {
                     clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
                 nav[0].style.height = clientHeight + "px";
-                
+
                 Jeq.set("clientWidth", clientWidth);
                 Jeq.set("clientHeight", clientHeight);
+
                 
                 clientWidth = null;
                 clientHeight = null;
             });
-            
+
             navBtn = null;
             links = null;
-        },
-        //On first visit, runs from routes not init method
-        firstVisit = function () {
-            var modal = document.getElementById("modal"),
-                firstVisit = config.firstVisit;
-
-            if (firstVisit) {
-                modal.style.top = "100%";
-                config.firstVisit = false;
-
-                modal = null;
-            }
         },
         //protected utility functions
         utils = {
@@ -75,7 +67,6 @@ var Jeq = (function () {
                 return data;
             }
         },
-
         //public config definition function
         set = function (key, value) {
             if (typeof config[key] == 'undefined') {
@@ -105,12 +96,15 @@ var Jeq = (function () {
         ajax = function (args, callBack) {
             switch (args.method) {
             case "get":
-                var check = localCheck(args.url),
+                var check = Jeq.localCheck(args.url),
                     req = new XMLHttpRequest();
 
-                console.log(check);
-                console.log(args.url);
+                if (args.url === "JeqV.json" && check === "11") {
+                    check = "10";
+                };
+
                 if (check === "00" || check === "10") {
+                    console.log("new get")
                     req.open('GET', args.url, true);
                     req.onreadystatechange = function () {
                         if (req.readyState == 4) {
@@ -119,7 +113,9 @@ var Jeq = (function () {
                                     localStorage.setItem(args.url, req.response);
                                 }
 
-                                callBack(req.response);
+                                if (callBack !== undefined) {
+                                    callBack(req.response);
+                                }
                             }
 
                             if (req.status == 404) {
@@ -128,12 +124,16 @@ var Jeq = (function () {
                         }
                     };
                     req.send(null);
-                }
+                };
 
                 if (check === "11") {
+                    console.log("cache get")
                     var localData = localStorage.getItem(args.url);
-                    callBack(localData);
-                }
+
+                    if (callBack !== undefined) {
+                        callBack(localData);
+                    }
+                };
 
                 break;
             case "post":
@@ -145,22 +145,43 @@ var Jeq = (function () {
         //Check if item exists in localstorage or if localstorage is not allowed in browser version
         localCheck = function (key) {
             if (typeof (Storage) !== "undefined") {
+                //Local Storage Allowed
                 if (localStorage.getItem(key) === null) {
+                    //Item not in local storage
                     return "10";
                 } else {
+                    //Item exists in local storage
                     return "11";
                 }
             } else {
+                //Local Storage Not Allowed
                 return "00";
             }
+        },
+        checkVersion = function (args) {
+            var temp = localStorage.getItem("JeqV.json");
+            //Check if version JSON has been downloaded
+            //var initialCheck = Jeq.localCheck("JeqV.json");
+
+            Jeq.ajax({
+                "method": "get",
+                "url": "JeqV.json"
+            }, function (result) {
+                if (temp === result) {
+                    console.log("data versions the same");
+                } else {
+                    console.log("versions are different");
+                }
+            });
         };
     //extend protected members and return the resulting public data
     return utils.extend(this, {
         init: init,
-        firstVisit: firstVisit,
         utils: utils,
         set: set,
         get: get,
-        ajax: ajax
+        ajax: ajax,
+        localCheck: localCheck,
+        checkVersion: checkVersion
     });
 }).call({});

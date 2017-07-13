@@ -82,7 +82,9 @@ Jeq.animate = (function () {
                 //if nav btn is original state
                 if (modalState) {
                     setTimeout(function () {
-                        navBtn.style.cssText = "background: rgba(255, 255, 255, 0.9); box-shadow: 0 1px 10px rgba(43, 46, 57, 0.4)";
+                        if (clientWidth < 1024) {
+                            navBtn.style.cssText = "background: rgba(255, 255, 255, 0.9); box-shadow: 0 1px 10px rgba(43, 46, 57, 0.4)";
+                        }
                     }, 200);
                 }
 
@@ -122,35 +124,70 @@ Jeq.animate = (function () {
                 }, 350);
             }
         },
+        moveToCenter = function () {
+
+        },
+        bringToFront = function (nodeId) {
+            var node = document.getElementById(nodeId);
+            node.style.zIndex = "100";
+        },
         modal = function (callBack) {
             var wrap = document.getElementById("wrap"),
-                modal = document.getElementById("modal"),
+                modal = document.getElementById("JeqModal"),
                 modalState = Jeq.get("modalState"),
-                firstVisit = Jeq.get("firstVisit"),
-                clientHeight = Jeq.get("clientHeight");
-
+                clientHeight = Jeq.get("clientHeight"),
+                clientWidth = Jeq.get("clientWidth");
+            
             //If modal is open
             if (modalState) {
                 Jeq.animate.navBtn();
                 Jeq.set("modalState", false);
-                modal.style.cssText = "position: fixed; top: 100%";
 
-                wrap.style.height = "auto";
+                if (clientWidth < 1024) {
+                    modal.style.cssText = "position: fixed; top: 100%";
+                }
+
+                if (clientWidth > 1024) {
+                    var modalLeft = modal.querySelectorAll(".JeqBlock").item(0),
+                        modalRight = modal.querySelectorAll(".JeqBlock").item(1);
+
+                    modalLeft.style.left = "-60%";
+                    modalRight.style.right = "-40%";
+
+                    setTimeout(function () {
+                        modal.style.height = "auto";
+                    }, 375);
+                }
+                wrap.style.cssText = "height: auto; overflow: scroll;";
             } else {
-                if (!firstVisit) {
+                if (clientWidth < 1024) {
                     modal.style.cssText = "position: absolute; top: 0px; height: " + clientHeight + "px";
+                    
+                    wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
+                }
 
-                    wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
-                } else {
-                    //firstVisit
-                    modal.style.cssText = "position: absolute; z-index: 99; height: " + clientHeight + "px";
-                    wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
+                if (clientWidth > 1024) {
+                    var modalLeft = modal.querySelectorAll(".JeqBlock").item(0),
+                        modalRight = modal.querySelectorAll(".JeqBlock").item(1);
+
+                    modal.style.cssText = "top: 0; height: " + clientHeight + "px";
+
+                    setTimeout(function () {
+                        modalLeft.style.left = "0px";
+                        modalRight.style.right = "0px";
+
+                        wrap.style.overflow = "hidden";
+
+                        setTimeout(function () {
+                            wrap.style.cssText = "height: " + clientHeight + "px; overflow: hidden";
+                        }, 450);
+                    }, 120);
                 }
 
                 Jeq.set("modalState", true);
                 Jeq.animate.navBtn();
             }
-            //Jeq.animate.navBtn(false);
+
             if (callBack !== undefined) {
                 callBack();
             }
@@ -160,6 +197,7 @@ Jeq.animate = (function () {
         fade: fade,
         nav: nav,
         navBtn: navBtn,
-        modal: modal
+        modal: modal,
+        bringToFront: bringToFront
     });
 }).apply(Jeq);

@@ -2,7 +2,6 @@
 var Router = new Grapnel(),
     JeqRoutes = {
         "": function () {
-            Jeq.firstVisit();
             Jeq.string.setHeading("About Me");
             document.title = "About Me | Mukkadas Siddiqui";
 
@@ -18,14 +17,8 @@ var Router = new Grapnel(),
             });
         },
         "portfolio": function () {
-            Jeq.firstVisit();
             Jeq.string.setHeading("Portfolio");
             document.title = "Porfolio | Mukkadas Siddiqui";
-
-            var modalState = Jeq.get("modalState");
-            if (modalState) {
-                Jeq.animate.modal();
-            }
 
             Jeq.ajax({
                 "method": "get",
@@ -41,38 +34,40 @@ var Router = new Grapnel(),
         "portfolio/:pieceId": function (req, e) {
             Jeq.string.setHeading(req.params.pieceId);
 
-            var url = "templates/portfolio/" + Jeq.string.camelCase(req.params.pieceId) + ".html";
+            var url = "templates/portfolio/" + Jeq.string.camelCase(req.params.pieceId) + ".html",
+                firstVisit = Jeq.get("firstVisit"),
+                article = document.getElementById("content"),
+                clientHeight = Jeq.get("clientHeight");
 
-            Jeq.ajax({
-                "method": "get",
-                "url": url
-            }, function (resultData) {
-                Jeq.html.set({
-                    "nodeId": "modal",
-                    "type": "piece",
-                    "data": resultData
-                }, function () {
-                    Jeq.animate.modal(function () {
-                        setTimeout(function () {
-                            Jeq.ajax({
-                                "method": "get",
-                                "url": "templates/portfolio.html"
-                            }, function (resultData) {
-                                Jeq.html.set({
-                                    "nodeId": "content",
-                                    "type": "main",
-                                    "data": resultData
-                                });
-                            });
-                        }, 300);
+            if (firstVisit) {
+                Jeq.ajax({
+                    "method": "get",
+                    "url": url
+                }, function (resultData) {
+                    Jeq.html.set({
+                        "nodeId": "content",
+                        "type": "main",
+                        "data": resultData
+                    }, function () {
+                        article.style.height = (clientHeight - 60) + "px";
                     });
                 });
-            });
-
-
+            } else {
+                Jeq.ajax({
+                    "method": "get",
+                    "url": url
+                }, function (resultData) {
+                    Jeq.html.set({
+                        "nodeId": "JeqModal",
+                        "type": "piece",
+                        "data": resultData
+                    }, function () {
+                        Jeq.animate.modal();
+                    });
+                });
+            }
         },
         "resume": function () {
-            Jeq.firstVisit();
             Jeq.string.setHeading("Resume");
             document.title = "Resume | Mukkadas Siddiqui";
 
@@ -88,7 +83,6 @@ var Router = new Grapnel(),
             });
         },
         "contact": function () {
-            Jeq.firstVisit();
             Jeq.string.setHeading("Contact");
             document.title = "Contact Me | Mukkadas Siddiqui";
 
